@@ -27,8 +27,10 @@ def analyse_data(data_dir):
     
     daily_standard_deviation = pd.concat(daily_std_list)
 
-    graph_data = {
+    return daily_standard_deviation
+
+    """graph_data = {
         'daily standard deviation': daily_standard_deviation
     }
 
-    views.visualize(graph_data)
+    views.visualize(graph_data)"""
