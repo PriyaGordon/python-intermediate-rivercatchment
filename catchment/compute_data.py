@@ -8,6 +8,7 @@ import pandas as pd
 from catchment import models, views
 
 
+
 def analyse_data(data_dir):
     """Calculate the standard deviation by day between datasets.
 
@@ -19,15 +20,20 @@ def analyse_data(data_dir):
     if len(data_file_paths) == 0:
         raise ValueError('No CSV files found in the data directory')
     data = map(models.read_variable_from_csv, data_file_paths)
+    daily_standard_deviation = compute_standard_deviation_by_day(data)
+    return daily_standard_deviation 
+    
 
+    
+def compute_standard_deviation_by_day(data):
     daily_std_list = []
-    for dataset in data:
+    """for dataset in data:
         daily_std = dataset.groupby(dataset.index.date).std()
-        daily_std_list.append(daily_std)
+        daily_std_list.append(daily_std)"""
+    daily_std_list = map(models.daily_std, data)
     
     daily_standard_deviation = pd.concat(daily_std_list)
-
-    return daily_standard_deviation
+    return daily_standard_deviation 
 
     """graph_data = {
         'daily standard deviation': daily_standard_deviation

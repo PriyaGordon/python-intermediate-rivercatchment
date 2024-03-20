@@ -82,3 +82,5 @@ def daily_min(data):
     Index must be np.datetime64 compatible format."""
     return data.groupby(data.index.date).min()
 
+def daily_std(data):
+    return data.groupby(data.index.date).std()
