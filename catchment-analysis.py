@@ -19,14 +19,29 @@ def main(args):
         InFiles = [args.infiles]
     
     if args.full_data_analysis:
-        daily_standard_deviation = compute_data.analyse_data(os.path.dirname(InFiles[0]))
+        _, extention = os.path.splitext(InFiles[0])
+        if extention == ".csv":
+            data_source = compute_data.CSVDataSource(os.path.dirname(InFiles[0]))
+        elif extention == ".json":
+            data_source = compute_data.JSONDataSource(os.path.dirname(InFiles[0]))
+        else:
+            raise ValueError(f'Unsupported file format: {extention}')
+        # analyse_data(data_source)
+        daily_standard_deviation =compute_data.analyse_data(data_source)
         graph_data = {
-        'daily standard deviation': daily_standard_deviation
+            'daily standard deviation': daily_standard_deviation
         }
         views.visualize(graph_data)
 
     for filename in InFiles:
-        measurement_data = models.read_variable_from_csv(filename)
+        _, extention = os.path.splitext(InFiles[0])
+        if extention == ".csv":
+            measurement_data = models.read_variable_from_csv(filename)
+        elif extention == ".json":
+            measurement_data = models.read_variable_from_json(filename)
+        else:
+            raise ValueError(f'Unsupported file format: {extention}')
+
         
         view_data = {'daily sum': models.daily_total(measurement_data), 'daily average': models.daily_mean(measurement_data), 'daily max': models.daily_max(measurement_data), 'daily min': models.daily_min(measurement_data)}
         
