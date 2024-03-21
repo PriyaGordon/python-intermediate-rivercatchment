@@ -43,8 +43,8 @@ def main(args):
         view_data = {'daily sum': models.daily_total(measurement_data), 'daily average': models.daily_mean(measurement_data), 'daily max': models.daily_max(measurement_data), 'daily min': models.daily_min(measurement_data)}
         
         views.visualize(view_data)
-
-if __name__ == "__main__":
+    
+def create_argparse():
     parser = argparse.ArgumentParser(
         description='A basic environmental data management system')
     
@@ -54,7 +54,13 @@ if __name__ == "__main__":
         help='Input CSV(s) containing measurement data')
 
     parser.add_argument('--full-data-analysis', action='store_true', dest='full_data_analysis')
+
+    return parser
+
+if __name__ == "__main__":
     
+    parser = create_argparse()
+
     args = parser.parse_args()
     
     main(args)
