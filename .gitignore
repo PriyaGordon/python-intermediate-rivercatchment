@@ -16,3 +16,9 @@ venv/
 *.pyc
 *.egg-info
 .pytest_cache
+
+# virtual environment
+venv/
+
+# personal
+examples.ipynb
