@@ -1,9 +1,9 @@
 import numpy as np
-import numpy.testing as npt
+# import np.testing as npt
 from pathlib import Path
 
 def test_analyse_data():
-    from catchment.test_compute_data import analyse_data
+    from catchment.compute_data import analyse_data
     path = Path.cwd() / "data"
     result = analyse_data(path)
     expected_output = [ [0.        , 0.18801829],
@@ -37,4 +37,5 @@ def test_analyse_data():
                        [0.13449059, 0.        ],
                        [0.18285024, 0.19707288],
                        [0.19176008, 0.13915472]]
-    npt.assert_array_almost_equal(result, expected_output)
+    print(result,expected_output)
+    np.testing.assert_array_almost_equal(result, expected_output)

@@ -34,7 +34,7 @@ def main(args):
         
         views.visualize(view_data)
 
-def create_argparse():
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='A basic environmental data management system')
     
@@ -44,10 +44,6 @@ def create_argparse():
         help='Input CSV(s) containing measurement data')
 
     parser.add_argument('--full-data-analysis', action='store_true', dest='full_data_analysis')
-
-if __name__ == "__main__":
-    
-    parser = create_argparse()
     
     args = parser.parse_args()
     
