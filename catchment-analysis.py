@@ -10,7 +10,6 @@ from catchment.compute_data import CSVDataSource, JSONDataSource
 
 def main(args):
     """The MVC Controller of the environmental data system.
-
     The Controller is responsible for:
     - selecting the necessary models and views for the current task
     - passing data between models and views
@@ -18,7 +17,6 @@ def main(args):
     InFiles = args.infiles
     if not isinstance(InFiles, list):
         InFiles = [args.infiles]
-
     extension = InFiles[0].split(".")[-1]
 
     
@@ -41,20 +39,16 @@ def main(args):
         elif extension == 'json':
             measurement_data = models.read_variable_from_json(filename, args.measurements)
         view_data = {'daily sum': models.daily_total(measurement_data), 'daily average': models.daily_mean(measurement_data), 'daily max': models.daily_max(measurement_data), 'daily min': models.daily_min(measurement_data)}
-        
         views.visualize(view_data)
     
 def create_argparse():
     parser = argparse.ArgumentParser(
         description='A basic environmental data management system')
-    
     req_group = parser.add_argument_group('required arguments')
-    
     parser.add_argument(
         'infiles',
         nargs='+',
         help='Input CSV(s) containing measurement data')
-
     req_group.add_argument(
         '-m', '--measurements', 
         help = 'Name of measurement data series to load'
@@ -68,7 +62,5 @@ def create_argparse():
 if __name__ == "__main__":
     
     parser = create_argparse()
-
     args = parser.parse_args()
-    
     main(args)
