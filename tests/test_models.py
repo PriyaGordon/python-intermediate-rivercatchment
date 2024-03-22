@@ -218,4 +218,3 @@ def test_std(test_input, expected_output):
     """Test max function works for array of zeroes and positive integers."""
     from catchment.models import daily_std
     pdt.assert_frame_equal(daily_std(test_input), expected_output)
-
