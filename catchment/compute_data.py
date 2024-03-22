@@ -29,6 +29,16 @@ class JSONDataSource:
         data = map(models.read_variable_from_json, data_file_paths)
         return data
 
+class XMLDataSource:
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
+
+    def load_catchment_data(self):
+        data_file_paths = glob.glob(os.path.join(self.data_dir, 'rain_data_2015*.xml'))
+        if len(data_file_paths) == 0:
+            raise ValueError('No XML files found in the data directory')
+        data = map(models.read_variable_from_xml, data_file_paths)
+        return data
 
 def analyse_data(data_source):
     """Calculate the standard deviation by day between datasets.
