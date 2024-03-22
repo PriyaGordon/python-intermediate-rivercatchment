@@ -1,7 +1,8 @@
-# RiverCatch
+# RiverAnalyser_PRO_
 
+![396adf79-2f6b-43ea-946a-f93208f1a76a](https://github.com/PriyaGordon/python-intermediate-rivercatchment/assets/93257279/2b4e792f-00f2-430d-ab25-27c10b40deb5)
 
-RiverCatch is a data management system written in Python that manages measurement data collected in river catchment surveys and campaigns.
+**RiverAnalyser**_PRO_ is a data management system written in Python that manages measurement data collected in river catchment surveys and campaigns.
 
 ## Main features
 Here are some key features of Inflam:
