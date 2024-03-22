@@ -1,4 +1,4 @@
-# RiverAnalyser_PRO_
+# RiverAnalyserPRO
 
 ![396adf79-2f6b-43ea-946a-f93208f1a76a](https://github.com/PriyaGordon/python-intermediate-rivercatchment/assets/93257279/2b4e792f-00f2-430d-ab25-27c10b40deb5)
 
