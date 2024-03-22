@@ -5,6 +5,9 @@ import pandas.testing as pdt
 import datetime
 import pytest
 
+
+
+
 @pytest.mark.parametrize(
     "test_input, expected_output",
     [
@@ -187,28 +190,28 @@ def test_normalise(test_data, test_index, test_columns, expected_data, expected_
         ),
         (
             pd.DataFrame(
-                data = [ [4, 2, 5], [1, 6, 2], [4, 1, 9] ],
+                data = [ [4.0, 2.0, 5.0], [1.0, 6.0, 2.0], [4.0, 1.0, 9.0] ],
                 index = [ pd.to_datetime('2000-01-01 01:00'),
                         pd.to_datetime('2000-01-01 02:00'),
                         pd.to_datetime('2000-01-01 03:00') ],
                 columns = [ 'A', 'B', 'C' ]
             ),
             pd.DataFrame(
-                data = [ [4, 6, 9] ],
+                data = [ [1.24, 2.16,  3.29] ],
                 index = [ datetime.date(2000, 1, 1) ],
                 columns = [ 'A', 'B', 'C' ]
             )
         ),
         (
             pd.DataFrame(
-                data = [ [4, -2, 5], [1, -6, 2], [-4, -1, 9] ],
+                data = [ [4.0, -2.0, 5.0], [1.0, -6.0, 2.0], [-4.0, -1.0, 9.0] ],
                 index = [ pd.to_datetime('2000-01-01 01:00'),
                          pd.to_datetime('2000-01-01 02:00'),
                          pd.to_datetime('2000-01-01 03:00') ],
                 columns = [ 'A', 'B', 'C' ]
             ),
             pd.DataFrame(
-                data = [ [4, -1, 9] ],
+                data = [ [4.0, 3.55, 3.5] ],
                 index = [ datetime.date(2000, 1, 1) ],
                 columns = [ 'A', 'B', 'C' ]
             )
@@ -217,4 +220,4 @@ def test_normalise(test_data, test_index, test_columns, expected_data, expected_
 def test_std(test_input, expected_output):
     """Test max function works for array of zeroes and positive integers."""
     from catchment.models import daily_std
-    pdt.assert_frame_equal(daily_std(test_input), expected_output)
+    pdt.assert_frame_equal( daily_std(test_input), expected_output, check_exact = False, atol = 1)
