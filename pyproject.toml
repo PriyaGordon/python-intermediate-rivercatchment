@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "catchment"
 version = "1.0.0"
-description = "Analyse river catchment river project data"
+description = "Analyse river catchment project data"
 authors = ["Priya Gordon"]
 license = "MIT"
 readme = "README.md"

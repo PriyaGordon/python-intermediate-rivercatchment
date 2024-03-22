@@ -5,7 +5,7 @@ import argparse
 import os
 
 from catchment import models, views, compute_data
-from catchment.compute_data import CSVDataSource, JSONDataSource
+from catchment.compute_data import CSVDataSource, JSONDataSource, XMLDataSource
 
 
 def main(args):
@@ -25,6 +25,8 @@ def main(args):
             data_source = CSVDataSource(os.path.dirname(InFiles[0]))
         elif extension == 'json':
             data_source = JSONDataSource(os.path.dirname(InFiles[0]))
+        elif extension == 'xml':
+            data_source = XMLDataSource(os.path.dirname(InFiles[0]))
         else:
             raise ValueError('Not a valid file extension')
         
@@ -38,6 +40,8 @@ def main(args):
             measurement_data = models.read_variable_from_csv(filename, args.measurements)
         elif extension == 'json':
             measurement_data = models.read_variable_from_json(filename, args.measurements)
+        elif extension == 'xml':
+            measurement_data = models.read_variable_from_xml(filename, args.measurements)
         view_data = {'daily sum': models.daily_total(measurement_data), 'daily average': models.daily_mean(measurement_data), 'daily max': models.daily_max(measurement_data), 'daily min': models.daily_min(measurement_data)}
         views.visualize(view_data)
     
@@ -48,7 +52,7 @@ def create_argparse():
     parser.add_argument(
         'infiles',
         nargs='+',
-        help='Input CSV(s) containing measurement data')
+        help='Input CSV or JSON or XML file(s) containing measurement data')
     req_group.add_argument(
         '-m', '--measurements', 
         help = 'Name of measurement data series to load'
