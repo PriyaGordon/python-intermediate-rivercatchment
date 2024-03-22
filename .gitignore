@@ -21,9 +21,9 @@ venv/
 venv/
 
 # personal
-example.ipynb
-test.ipynb
-tutorial.py
+.example.ipynb
+.test.ipynb
+.tutorial.py
 .DS_Store
 
 
